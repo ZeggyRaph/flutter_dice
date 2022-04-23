@@ -45,6 +45,7 @@ class _DicePageState extends State<DicePage> {
                   //this causes the change when the image is clicked
                   leftDiceNumber = Random().nextInt(6) +
                       1; //This generates random numbers b/w  1 and 6
+                  rightDiceNumber = Random().nextInt(6) + 1;
                 });
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
@@ -54,7 +55,9 @@ class _DicePageState extends State<DicePage> {
             child: FlatButton(
               onPressed: () {
                 setState(() {
+                  //repeating this on both left and right dices ensure both dices changes when either is clicked
                   rightDiceNumber = Random().nextInt(6) + 1;
+                  leftDiceNumber = Random().nextInt(6) + 1;
                 });
               },
               child: Image.asset('images/dice$rightDiceNumber.png'),
