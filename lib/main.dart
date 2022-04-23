@@ -29,6 +29,14 @@ class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 1;
 
+  //creating a function to ensure both dice changes images when any one of them is clicked
+  void bothDiceChanger() {
+    setState(() {
+      rightDiceNumber = Random().nextInt(6) + 1;
+      leftDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -40,13 +48,7 @@ class _DicePageState extends State<DicePage> {
             child: FlatButton(
               //creates a button
               onPressed: () {
-                // this enables the button to do something when pressed
-                setState(() {
-                  //this causes the change when the image is clicked
-                  leftDiceNumber = Random().nextInt(6) +
-                      1; //This generates random numbers b/w  1 and 6
-                  rightDiceNumber = Random().nextInt(6) + 1;
-                });
+                bothDiceChanger(); //calling the bothDiceChanger function
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
@@ -54,11 +56,7 @@ class _DicePageState extends State<DicePage> {
           Expanded(
             child: FlatButton(
               onPressed: () {
-                setState(() {
-                  //repeating this on both left and right dices ensure both dices changes when either is clicked
-                  rightDiceNumber = Random().nextInt(6) + 1;
-                  leftDiceNumber = Random().nextInt(6) + 1;
-                });
+                bothDiceChanger(); //calling the bothDiceChanger function
               },
               child: Image.asset('images/dice$rightDiceNumber.png'),
             ),
